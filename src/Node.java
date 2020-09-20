@@ -1,16 +1,27 @@
 import java.awt.Point;
 import java.util.Arrays;
 
+/*
+Search node with board, depth, and heuristics
+ */
 public class Node {
 
+    // associated puzzle state
     char[][] board;
+    // board locations of each tile
     Point[] indexes = new Point[9];
+    // parent node
     Node parent;
-
+    // number of tiles out of place
     int h1;
+    // sum of tile distances to correct positions
     int h2;
+    // node depth in tree
     int d;
 
+    /*
+    constructor
+     */
     public Node(char[][] board) {
 
         d = 0;
@@ -21,6 +32,9 @@ public class Node {
         this.calcH();
     }
 
+    /*
+    setters and getters
+     */
     public void setBoard(char[][] c) {
         board = c;
         this.updateIndexes();
@@ -56,12 +70,19 @@ public class Node {
     public int getD() { return d;
     }
 
-    public int getF1() { return d + 2*h1;
+    /*
+    f1 and f2 for A* search
+     */
+
+    public int calcF1() { return d + 2*h1;
     }
 
-    public int getF2() { return d + 2*h2;
+    public int calcF2() { return d + 2*h2;
     }
 
+    /*
+    fill out indexes
+     */
     public void updateIndexes() {
 
         for(int i = 0; i < 3; i++) {
@@ -71,6 +92,9 @@ public class Node {
         }
     }
 
+    /*
+    calculate h1 and h2 for current board state
+     */
     public void calcH() {
 
         for(int i = 0; i < 3; i++) {
@@ -85,6 +109,10 @@ public class Node {
         }
     }
 
+    /*
+    returns a new node with the board state that would follow from moving in the specified direction
+    (0 = up, 1 = down, 2 = left, 3 = right)
+     */
     public Node move(int m) {
 
         char[][] newBoard = new char[3][3];
@@ -97,6 +125,7 @@ public class Node {
         int x = 0;
         int y = 0;
 
+        // determine how to modify x and y
         switch(m) {
             case 0:
                 x = -1;
@@ -114,9 +143,11 @@ public class Node {
                 break;
         }
 
+        // bound x and y to valid indices
         int newX = Math.max(Math.min(indexes[0].x + x, 2), 0);
         int newY = Math.max(Math.min(indexes[0].y + y, 2), 0);
 
+        // create new board and new node
         newBoard[indexes[0].x][indexes[0].y] = newBoard[newX][newY];
         newBoard[newX][newY] = '0';
 
@@ -126,6 +157,7 @@ public class Node {
         return output;
     }
 
+    // prints to System.out
     public void printState() {
 
         System.out.println("------");

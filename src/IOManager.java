@@ -2,10 +2,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/*
+reads from text file and passes commands to Puzzle
+ */
 public class IOManager {
 
     public static void main (String[] args) {
 
+        // initialize blank puzzle
         Puzzle p = new Puzzle(new Node(new char[][]{{'0','0','0'},{'0','0','0'},{'0','0','0'}}));
 
         try {

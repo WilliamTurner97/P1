@@ -44,7 +44,7 @@ public class PuzzleTests extends TestCase {
       p.randomizeState(500);
       p.printState();
       //p.solveA(2);
-      //p.solveBeam(4);
+      p.solveBeam(4);
 
 
   }
