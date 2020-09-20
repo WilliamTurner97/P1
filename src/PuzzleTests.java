@@ -1,8 +1,5 @@
 import junit.framework.TestCase;
 
-import java.util.Arrays;
-import java.util.concurrent.ThreadLocalRandom;
-
 public class PuzzleTests extends TestCase {
 
   public void testMain() {
@@ -13,12 +10,10 @@ public class PuzzleTests extends TestCase {
 
   public void testD() {
 
-      //new char[][]{{'','',''},{'','',''},{'','',''}}
-
       Node n1 = new Node(new char[][]{{'0','0','0'},{'0','0','0'},{'0','0','0'}});
-      Node n2 = n1.move("up");
-      Node n3 = n2.move("down");
-      Node n4 = n1.move("right");
+      Node n2 = n1.move(0);
+      Node n3 = n2.move(1);
+      Node n4 = n1.move(3);
 
       assertEquals("n1", n1.getD(), 0);
       assertEquals("n2", n2.getD(), 1);
@@ -33,8 +28,8 @@ public class PuzzleTests extends TestCase {
 
     assertEquals("n1h1", n1.getH1(), 0);
     assertEquals("n1h2", n1.getH2(), 0);
-    assertEquals("n2h1", n2.getH1(), 8);
-    assertEquals("n2h2", n2.getH2(), 24);
+    assertEquals("n2h1", n2.getH1(), 7);
+    assertEquals("n2h2", n2.getH2(), 20);
   }
 
   public void testF() {
@@ -49,7 +44,7 @@ public class PuzzleTests extends TestCase {
       p.randomizeState(500);
       p.printState();
       //p.solveA(2);
-      p.solveBeam(10);
+      //p.solveBeam(4);
 
 
   }

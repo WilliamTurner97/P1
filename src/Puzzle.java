@@ -8,14 +8,39 @@ public class Puzzle {
   Node currentNode;
   int maxNodes;
   char[][] goalState = new char[][]{{'0','1','2'},{'3','4','5'},{'6','7','8'}};
-
-  ArrayList<Node> frontier = new ArrayList();
+  ArrayList<Node> frontier = new ArrayList<>();
 
   public Puzzle(Node startNode) {
 
       currentNode = startNode;
       maxNodes = 1000;
   }
+
+  public void printState() { this.currentNode.printState();
+  }
+
+  public void setMaxMoves(int x){ this.maxNodes = x;
+  }
+
+  public void move(String s) {
+
+      switch(s) {
+            case "up":
+                currentNode = currentNode.move(0);
+                break;
+            case "down":
+                currentNode = currentNode.move(1);
+                break;
+            case "left":
+                currentNode = currentNode.move(2);
+                break;
+            case "right":
+                currentNode = currentNode.move(3);
+                break;
+            default:
+                break;
+        }
+    }
 
   public void setState(String s1, String s2, String s3) {
 
@@ -31,50 +56,14 @@ public class Puzzle {
               }
           }
       }
-
       currentNode.setBoard(newBoard);
-  }
-
-  public void setMaxMoves(int x){
-      this.maxNodes = x;
-  }
-
-  public void move(String s) {
-
-      currentNode = currentNode.move(s);
   }
 
   public void randomizeState(int n){
 
-      String[] directions = new String[] {"up", "down", "left", "right"};
-
       for(int i = 0; i < n; i++) {
-          move(directions[ThreadLocalRandom.current().nextInt(0, 4)]);
+          currentNode = currentNode.move(ThreadLocalRandom.current().nextInt(0, 4));
       }
-  }
-
-  public void printState() {
-
-      System.out.println("------");
-
-      char[][] c= new char[3][3];
-      for(int i = 0; i < 3; i++) {
-          for(int j = 0; j < 3; j++) {
-              c[i][j] = currentNode.getBoard()[i][j];
-          }
-      }
-      c[currentNode.getIndexes()[0].x][currentNode.getIndexes()[0].y] = 'b';
-
-      for(int i = 0; i < 3; i++) {
-          StringBuilder line = new StringBuilder("");
-          for(int j = 0; j < 3; j++) {
-              line.append(c[i][j]);
-              line.append(' ');
-          }
-          System.out.println(line.toString());
-      }
-
-      System.out.println("------");
   }
 
   public void solveA(int h) {
@@ -93,28 +82,20 @@ public class Puzzle {
                   break;
               default:
                   break;
-
           }
-
           i++;
           currentNode = frontier.get(0);
-          //this.printState();
       }
-
-      System.out.println(i);
       this.printState();
   }
 
   public void solveBeam(int k) {
 
-      int i = 0;
-
       this.expand();
-
+      int i = 0;
       while( (!(Arrays.deepEquals(currentNode.getBoard(), goalState)) && (i < maxNodes) ) ){
 
           System.out.println("++++++++++");
-
           int v = Math.min(k, frontier.size());
 
           for(int j = 0; j < v; j++) {
@@ -126,49 +107,22 @@ public class Puzzle {
                   this.expand();
               }
           }
-
-          frontier.sort(Comparator.comparing(Node::getF2));
-
+          frontier.sort(Comparator.comparing(Node::getH2));
           currentNode = frontier.get(0);
           i++;
 
-
           for(int j = k + 1; j < frontier.size(); j++) {
-
               frontier.remove(j);
           }
-
       }
-
       this.printState();
   }
 
   public void expand() {
 
-      String[] directions = new String[] {"up", "down", "left", "right"};
-
       for(int i = 0; i < 4; i++) {
+          frontier.add(currentNode.move(i));
 
-          boolean b = true;
-
-          for(int j = 0; j < frontier.size(); j++) {
-
-              if(Arrays.deepEquals(frontier.get(j).getBoard(), currentNode.move(directions[i]).getBoard())) {
-                  b = false;
-              }
-          }
-
-          if(b)
-              frontier.add(currentNode.move(directions[i]));
       }
-
-      /*
-      frontier.add(currentNode.move("up"));
-      frontier.add(currentNode.move("down"));
-      frontier.add(currentNode.move("left"));
-      frontier.add(currentNode.move("right"));
-
-       */
-
-  }
+   }
 }

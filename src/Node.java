@@ -1,4 +1,5 @@
 import java.awt.Point;
+import java.util.Arrays;
 
 public class Node {
 
@@ -25,29 +26,41 @@ public class Node {
         this.updateIndexes();
     }
 
-    public char[][] getBoard() { return board; }
+    public char[][] getBoard() { return board;
+    }
 
-    public void setParent(Node n) { parent = n; }
+    public void setParent(Node n) { parent = n;
+    }
 
-    public Node getParent() { return this.parent; }
+    public Node getParent() { return this.parent;
+    }
 
-    public Point[] getIndexes() { return indexes; }
+    public Point[] getIndexes() { return indexes;
+    }
 
-    public void setH1(int x) { h1 = x; }
+    public void setH1(int x) { h1 = x;
+    }
 
-    public int getH1() { return h1; }
+    public int getH1() { return h1;
+    }
 
-    public void setH2(int x) { h2 = x; }
+    public void setH2(int x) { h2 = x;
+    }
 
-    public int getH2() { return h2; }
+    public int getH2() { return h2;
+    }
 
-    public void setD(int x) { d = x; }
+    public void setD(int x) { d = x;
+    }
 
-    public int getD() { return d; }
+    public int getD() { return d;
+    }
 
-    public int getF1() { return d + 2*h1; }
+    public int getF1() { return d + 2*h1;
+    }
 
-    public int getF2() { return d + 2*h2; }
+    public int getF2() { return d + 2*h2;
+    }
 
     public void updateIndexes() {
 
@@ -72,7 +85,7 @@ public class Node {
         }
     }
 
-    public Node move(String s) {
+    public Node move(int m) {
 
         char[][] newBoard = new char[3][3];
         for(int i = 0; i < 3; i++) {
@@ -84,17 +97,17 @@ public class Node {
         int x = 0;
         int y = 0;
 
-        switch(s) {
-            case "up":
+        switch(m) {
+            case 0:
                 x = -1;
                 break;
-            case "down":
+            case 1:
                 x = 1;
                 break;
-            case "left":
+            case 2:
                 y = -1;
                 break;
-            case "right":
+            case 3:
                 y = 1;
                 break;
             default:
@@ -116,23 +129,12 @@ public class Node {
     public void printState() {
 
         System.out.println("------");
-
-        char[][] c= new char[3][3];
-
-        for(int i = 0; i < 3; i++) {
-            for(int j = 0; j < 3; j++) {
-                c[i][j] = board[i][j];
-            }
-        }
+        char[][] c = board.clone();
         c[indexes[0].x][indexes[0].y] = 'b';
 
         for(int i = 0; i < 3; i++) {
-            StringBuilder line = new StringBuilder("");
-            for(int j = 0; j < 3; j++) {
-                line.append(c[i][j]);
-                line.append(' ');
-            }
-            System.out.println(line.toString());
+
+            System.out.println(Arrays.toString(board[i]).replace(',', ' '));
         }
         System.out.println("------");
     }

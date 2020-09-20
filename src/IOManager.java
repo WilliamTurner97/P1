@@ -9,9 +9,7 @@ public class IOManager {
         Puzzle p = new Puzzle(new Node(new char[][]{{'0','0','0'},{'0','0','0'},{'0','0','0'}}));
 
         try {
-
             Scanner readIn = new Scanner(new FileInputStream(args[0]));
-
             while(readIn.hasNext()) {
 
                 switch (readIn.next()) {
@@ -35,12 +33,8 @@ public class IOManager {
                         break;
                     default:
                         break;
-
-
                 }
-
             }
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

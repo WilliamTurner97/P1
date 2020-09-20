@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="58e138f3-1a66-48dd-a820-300a9e4eb4df" name="Default Changelist" comment="" />
+    <list default="true" id="58e138f3-1a66-48dd-a820-300a9e4eb4df" name="Default Changelist" comment="Initial Commit">
+      <change beforePath="$PROJECT_DIR$/out/production/P1/IOManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P1/IOManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/P1/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P1/Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/P1/Puzzle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P1/Puzzle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/P1/PuzzleTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IOManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IOManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Puzzle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PuzzleTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PuzzleTests.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -15,7 +29,18 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
   <component name="ProjectId" id="1hLbGyHQN2zhyWC6nXTMGtUylxf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
@@ -25,6 +50,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -49,7 +75,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.PuzzleTests.testF">
+  <component name="RunManager" selected="JUnit.PuzzleTests">
     <configuration name="PuzzleTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="P1" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -128,9 +154,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PuzzleTests" />
         <item itemvalue="JUnit.PuzzleTests.testF" />
         <item itemvalue="JUnit.PuzzleTests.testH" />
-        <item itemvalue="JUnit.PuzzleTests" />
         <item itemvalue="JUnit.PuzzleTests.testMain" />
         <item itemvalue="JUnit.PuzzleTests.testRandom" />
       </list>
@@ -167,6 +193,18 @@
       <option name="presentableId" value="Default" />
       <updated>1599793229633</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initial Commit">
+      <created>1600628380972</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1600628380972</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
   </component>
 </project>
