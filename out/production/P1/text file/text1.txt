@@ -1,0 +1,5 @@
+setState b12 345 678
+printState
+randomizeState 10
+printState
+solve A-Star 1
