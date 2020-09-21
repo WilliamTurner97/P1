@@ -2,6 +2,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.PriorityQueue;
 
 /*
 Current puzzle state and search algorithms
@@ -23,7 +25,7 @@ public class Puzzle {
   public Puzzle(Node startNode) {
 
       currentNode = startNode;
-      maxNodes = 1000;
+      maxNodes = 10000;
   }
 
   // prints current state
@@ -82,14 +84,67 @@ public class Puzzle {
   }
 
   // solves with A* with specified heuristic (1 or 2)
-  public void solveA(int h) {
+  public Node solveA(int h) {
 
-      frontier.clear();
+      PriorityQueue<Node> f = new PriorityQueue<>(1, Comparator.comparing(Node::calcF1) );
+      f.add(currentNode);
+
+      HashMap<char[][], Node> reached = new HashMap<>();
+      reached.put(currentNode.getBoard(), currentNode);
 
       int i = 0;
-      while( (!(Arrays.deepEquals(currentNode.getBoard(), goalState)) && (i < maxNodes) ) ){
+      while(f.size() > 0 && i < maxNodes) {
 
-          this.expand();
+          this.printState();
+
+          i++;
+          currentNode = f.poll();
+
+          if (Arrays.deepEquals(currentNode.getBoard(), goalState)) {
+              return currentNode;
+          }
+
+
+          for(Node n: this.expand(currentNode)) {
+
+              char[][] c = n.getBoard();
+
+              if( (!reached.containsKey(c)) || n.getD() < reached.get(c).getD() ) {
+
+                  reached.put(c, n);
+                  f.add(n);
+              }
+          }
+      }
+
+      this.printState();
+
+      /*
+
+      frontier.clear();
+      reached.clear();
+      frontier.add(currentNode);
+      reached.put(currentNode.getBoard(), currentNode);
+
+      int i = 0;
+      while( frontier.size() > 0 && i < maxNodes){
+
+          currentNode = frontier.get(0);
+          frontier.remove(0);
+
+          if(Arrays.deepEquals(currentNode.getBoard(), goalState)) {
+              return currentNode;
+          }
+
+          for(Node n: this.expand()) {
+
+              if( (!reached.containsKey(n.getBoard()))  |
+                      ( reached.containsKey(n.getBoard()) && n.getD() <  reached.get(n.getBoard()).getD() ) ) {
+                  reached.put(n.getBoard(), n);
+                  frontier.add(n);
+              }
+          }
+
           switch (h) {
 
               case 1:
@@ -102,9 +157,12 @@ public class Puzzle {
                   break;
           }
           i++;
-          currentNode = frontier.get(0);
+          this.printState();
       }
       this.printState();
+
+       */
+      return this.currentNode;
   }
 
   // solves with local beam search with k states using H2 heuristic
@@ -112,7 +170,7 @@ public class Puzzle {
 
       frontier.clear();
 
-      this.expand();
+      this.expand(currentNode);
       int i = 0;
       while( (!(Arrays.deepEquals(currentNode.getBoard(), goalState)) && (i < maxNodes) ) ){
 
@@ -126,7 +184,7 @@ public class Puzzle {
                   currentNode = frontier.get(j);
                   System.out.println("*******");
                   this.printState();
-                  this.expand();
+                  this.expand(currentNode);
               }
           }
           frontier.sort(Comparator.comparing(Node::getH2));
@@ -136,11 +194,15 @@ public class Puzzle {
       this.printState();
   }
 
-  // add all possible moves from current node to frontier
-  public void expand() {
+  //
+  public Node[] expand(Node n) {
+
+      Node[] nodes = new Node[4];
 
       for(int i = 0; i < 4; i++) {
-          frontier.add(currentNode.move(i));
+          nodes[i] = n.move(i);
       }
+
+      return nodes;
    }
 }

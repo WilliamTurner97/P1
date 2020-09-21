@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="58e138f3-1a66-48dd-a820-300a9e4eb4df" name="Default Changelist" comment="Initial Commit">
+    <list default="true" id="58e138f3-1a66-48dd-a820-300a9e4eb4df" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/out/production/P1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/P1/BoardState.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/P1/IOManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P1/IOManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/P1/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P1/Node.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/P1/Puzzle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P1/Puzzle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/P1/PuzzleTests.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IOManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IOManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/P1/PuzzleTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P1/PuzzleTests.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Puzzle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PuzzleTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PuzzleTests.java" afterDir="false" />
     </list>
@@ -75,7 +74,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.PuzzleTests">
+  <component name="RunManager" selected="JUnit.PuzzleTests.testF">
     <configuration name="PuzzleTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="P1" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -154,8 +153,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PuzzleTests" />
         <item itemvalue="JUnit.PuzzleTests.testF" />
+        <item itemvalue="JUnit.PuzzleTests" />
         <item itemvalue="JUnit.PuzzleTests.testH" />
         <item itemvalue="JUnit.PuzzleTests.testMain" />
         <item itemvalue="JUnit.PuzzleTests.testRandom" />
@@ -200,11 +199,46 @@
       <option name="project" value="LOCAL" />
       <updated>1600628380972</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="various cleanups">
+      <created>1600633837382</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1600633837382</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Commented">
+      <created>1600638438831</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1600638438831</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Deleted unused class">
+      <created>1600638497306</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1600638497306</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
+    <MESSAGE value="various cleanups" />
+    <MESSAGE value="Commented" />
+    <MESSAGE value="Deleted unused class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted unused class" />
   </component>
 </project>

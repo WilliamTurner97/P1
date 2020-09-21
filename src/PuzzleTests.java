@@ -5,7 +5,7 @@ public class PuzzleTests extends TestCase {
   public void testMain() {
 
       String[] s = new String[] {"text file/text1.txt"};
-      IOManager.main(s);
+      //IOManager.main(s);
   }
 
   public void testD() {
@@ -41,10 +41,12 @@ public class PuzzleTests extends TestCase {
       char[][] c1 = new char[][]{{'0','1','2'},{'3','4','5'},{'6','7','8'}};
       char[][] c2 = new char[][]{{'0','1','2'},{'3','4','5'},{'6','7','8'}};
 
-      p.randomizeState(500);
+      //p.randomizeState(500);
+      p.setState("542", "1b3", "786");
+
       p.printState();
-      //p.solveA(2);
-      p.solveBeam(4);
+      p.solveA(2);
+      //p.solveBeam(4);
 
 
   }
