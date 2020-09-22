@@ -51,6 +51,7 @@ public class PuzzleTests extends TestCase {
 
       p.randomizeState(500);
       p.solveBeam(4).printState();
+
   }
 
 }
