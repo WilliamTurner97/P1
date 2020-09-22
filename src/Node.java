@@ -18,6 +18,8 @@ public class Node {
     int h2;
     // node depth in tree
     int d;
+    // cost to reach node
+    int cost;
 
     /*
     constructor
@@ -27,6 +29,7 @@ public class Node {
         d = 0;
         h1 = 0;
         h2 = 0;
+        cost = 0;
         this.board = board;
         this.updateIndexes();
         this.calcH();
@@ -70,14 +73,20 @@ public class Node {
     public int getD() { return d;
     }
 
+    public void setCost(int x) { cost = x;
+    }
+
+    public int getCost() { return cost;
+    }
+
     /*
     f1 and f2 for A* search
      */
 
-    public int calcF1() { return d + 2*h1;
+    public int calcF1() { return cost + h1;
     }
 
-    public int calcF2() { return d + 2*h2;
+    public int calcF2() { return cost + h2;
     }
 
     /*
@@ -154,10 +163,13 @@ public class Node {
         Node output = new Node(newBoard);
         output.setParent(this);
         output.setD(this.getD() + 1);
+        output.setCost(output.getD() + 1);
         return output;
     }
 
-    // prints to System.out
+    /* prints to System.out
+
+     */
     public void printState() {
 
         System.out.println("------");

@@ -35,6 +35,9 @@ public class IOManager {
                             p.solveA(Integer.valueOf(readIn.next()) );
                         }
                         break;
+                    case "maxNodes":
+                        p.setMaxNodes(Integer.valueOf(readIn.next()));
+                        break;
                     default:
                         break;
                 }

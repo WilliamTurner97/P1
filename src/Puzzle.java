@@ -1,9 +1,11 @@
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
+import java.util.Stack;
 
 /*
 Current puzzle state and search algorithms
@@ -25,7 +27,7 @@ public class Puzzle {
   public Puzzle(Node startNode) {
 
       currentNode = startNode;
-      maxNodes = 10000;
+      maxNodes = 100000;
   }
 
   // prints current state
@@ -36,7 +38,9 @@ public class Puzzle {
   public void setMaxNodes(int x){ this.maxNodes = x;
   }
 
-  // changes current node to that of corresponding move
+  /* changes current node to that of corresponding move
+
+   */
   public void move(String s) {
 
       switch(s) {
@@ -57,7 +61,9 @@ public class Puzzle {
         }
     }
 
-  // setter for current node's board
+  /*
+  setter for current node's board
+   */
   public void setState(String s1, String s2, String s3) {
 
       char[][] newBoard = new char[3][3];
@@ -73,128 +79,110 @@ public class Puzzle {
           }
       }
       currentNode.setBoard(newBoard);
+      currentNode.calcH();
   }
 
-  // makes n random moves
+  /*
+  makes n random moves
+   */
   public void randomizeState(int n){
 
       for(int i = 0; i < n; i++) {
           currentNode = currentNode.move(ThreadLocalRandom.current().nextInt(0, 4));
       }
+
+      currentNode.setParent(null);
   }
 
-  // solves with A* with specified heuristic (1 or 2)
+  /*
+   solves with A* with specified heuristic (1 or 2)
+   */
   public Node solveA(int h) {
 
-      PriorityQueue<Node> f = new PriorityQueue<>(1, Comparator.comparing(Node::calcF1) );
-      f.add(currentNode);
+      Comparator comp;
 
-      HashMap<char[][], Node> reached = new HashMap<>();
-      reached.put(currentNode.getBoard(), currentNode);
+      switch(h) {
+
+          case 1:
+              comp = Comparator.comparing(Node:: calcF1);
+              break;
+          case 2:
+              comp = Comparator.comparing(Node :: calcF2);
+              break;
+          default:
+              comp = Comparator.comparing(Node:: calcF2);
+              break;
+      }
+
+      PriorityQueue<Node> f = new PriorityQueue<>(1, comp );
+      f.add(currentNode);
+      HashMap<String, Node> reached = new HashMap<>();
+      reached.put(boardString(currentNode.getBoard()), currentNode);
 
       int i = 0;
       while(f.size() > 0 && i < maxNodes) {
 
-          this.printState();
-
-          i++;
           currentNode = f.poll();
-
           if (Arrays.deepEquals(currentNode.getBoard(), goalState)) {
+              printTrace(currentNode);
+              System.out.println(i);
               return currentNode;
           }
 
-
           for(Node n: this.expand(currentNode)) {
 
+              i++;
               char[][] c = n.getBoard();
-
-              if( (!reached.containsKey(c)) || n.getD() < reached.get(c).getD() ) {
-
-                  reached.put(c, n);
+              if( (!reached.containsKey(boardString(c)))
+                      || n.getCost() < reached.get(boardString(c)).getCost() ) {
+                  reached.put(boardString(c), n);
                   f.add(n);
               }
           }
       }
-
-      this.printState();
-
-      /*
-
-      frontier.clear();
-      reached.clear();
-      frontier.add(currentNode);
-      reached.put(currentNode.getBoard(), currentNode);
-
-      int i = 0;
-      while( frontier.size() > 0 && i < maxNodes){
-
-          currentNode = frontier.get(0);
-          frontier.remove(0);
-
-          if(Arrays.deepEquals(currentNode.getBoard(), goalState)) {
-              return currentNode;
-          }
-
-          for(Node n: this.expand()) {
-
-              if( (!reached.containsKey(n.getBoard()))  |
-                      ( reached.containsKey(n.getBoard()) && n.getD() <  reached.get(n.getBoard()).getD() ) ) {
-                  reached.put(n.getBoard(), n);
-                  frontier.add(n);
-              }
-          }
-
-          switch (h) {
-
-              case 1:
-                  frontier.sort(Comparator.comparing(Node::calcF1));
-                  break;
-              case 2:
-                  frontier.sort(Comparator.comparing(Node::calcF2));
-                  break;
-              default:
-                  break;
-          }
-          i++;
-          this.printState();
-      }
-      this.printState();
-
-       */
       return this.currentNode;
   }
 
-  // solves with local beam search with k states using H2 heuristic
-  public void solveBeam(int k) {
+  /*
+   solves with local beam search with k states using H2 heuristic
+   */
+  public Node solveBeam(int k) {
 
-      frontier.clear();
+      PriorityQueue<Node> f = new PriorityQueue<>(1, Comparator.comparing(Node :: calcF2));
+      f.add(currentNode);
+      HashMap<String, Node> reached = new HashMap<>();
+      reached.put(boardString(currentNode.getBoard()), currentNode);
 
-      this.expand(currentNode);
       int i = 0;
-      while( (!(Arrays.deepEquals(currentNode.getBoard(), goalState)) && (i < maxNodes) ) ){
+      while(f.size() > 0 && i < maxNodes) {
 
-          System.out.println("++++++++++");
-          int v = Math.min(k, frontier.size());
+          currentNode = f.poll();
+          if (Arrays.deepEquals(currentNode.getBoard(), goalState)) {
+              printTrace(currentNode);
+              System.out.println(i);
+              return currentNode;
+          }
 
-          // expand k best nodes
-          for(int j = 0; j < v; j++) {
+          int v = Math.min(k, f.size());
+          for(int j = 0; j < v + 1; j++) {
+              for(Node n: expand(currentNode)) {
 
-              if( frontier.get((j)) != null) {
-                  currentNode = frontier.get(j);
-                  System.out.println("*******");
-                  this.printState();
-                  this.expand(currentNode);
+                  i++;
+                  char[][] c = n.getBoard();
+                  if( (!reached.containsKey(boardString(c)))
+                          || n.getCost() < reached.get(boardString(c)).getCost() ) {
+                      reached.put(boardString(c), n);
+                      f.add(n);
+                  }
               }
           }
-          frontier.sort(Comparator.comparing(Node::getH2));
-          currentNode = frontier.get(0);
-          i++;
       }
-      this.printState();
+      return currentNode;
   }
 
-  //
+  /*
+  returns a set of nodes for all possible moves from n
+   */
   public Node[] expand(Node n) {
 
       Node[] nodes = new Node[4];
@@ -202,7 +190,40 @@ public class Puzzle {
       for(int i = 0; i < 4; i++) {
           nodes[i] = n.move(i);
       }
-
       return nodes;
    }
+
+   /*
+   represents a board array as a string
+    */
+   public String boardString(char[][] c) {
+
+      StringBuilder s = new StringBuilder();
+      for(int i = 0; i < c.length; i++) {
+          s.append(Arrays.toString(c[i]));
+      }
+      return s.toString();
+  }
+
+  /*
+  prints the board states of the parent-child line from the head to the specified node
+   */
+  public void printTrace(Node n) {
+
+      Node track = n;
+      Stack<Node> path = new Stack<>();
+
+      while(track.getParent() != null) {
+
+          path.push(track);
+          track = track.getParent();
+      }
+
+      path.push(track);
+
+      while(!path.empty()) {
+
+          path.pop().printState();
+      }
+  }
 }
