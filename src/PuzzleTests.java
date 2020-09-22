@@ -1,4 +1,5 @@
 import junit.framework.TestCase;
+import java.util.Random;
 
 public class PuzzleTests extends TestCase {
 
@@ -50,8 +51,17 @@ public class PuzzleTests extends TestCase {
       Puzzle p = new Puzzle(n1);
 
       p.randomizeState(500);
-      p.solveBeam(4).printState();
+      p.solveBeam(4);
 
   }
 
+  public void testRand() {
+
+      Random r = new Random();
+      r.setSeed(24);
+      System.out.println(r.nextInt());
+
+      r.setSeed(24);
+      System.out.println(r.nextInt());
+  }
 }

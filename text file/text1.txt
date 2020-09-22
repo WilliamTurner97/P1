@@ -1,9 +1,12 @@
 setState b12 345 678
 printState
+randomizeState 45
+solve A-Star 1
+randomizeState 45
+solve A-Star 2
 randomizeState 100
-printState
 solve A-Star 1
 randomizeState 100
 solve A-Star 2
 randomizeState 100
-Solve beam 4
+solve beam 4

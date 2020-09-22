@@ -31,8 +31,12 @@ public class IOManager {
                         p.randomizeState(Integer.parseInt(readIn.next()));
                         break;
                     case "solve":
-                        if (readIn.next().equals("A-Star")) {
+                        String s = readIn.next();
+                        if (s.equals("A-Star")) {
                             p.solveA(Integer.valueOf(readIn.next()) );
+                        }
+                        if(s.equals("beam")) {
+                            p.solveBeam(Integer.valueOf(readIn.next()));
                         }
                         break;
                     case "maxNodes":

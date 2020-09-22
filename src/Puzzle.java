@@ -1,11 +1,10 @@
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.Stack;
+import java.util.Random;
 
 /*
 Current puzzle state and search algorithms
@@ -19,7 +18,6 @@ public class Puzzle {
   // desired state of board
   char[][] goalState = new char[][]{{'0','1','2'},{'3','4','5'},{'6','7','8'}};
   // nodes discovered
-  ArrayList<Node> frontier = new ArrayList<>();
 
   /*
   constructor
@@ -87,11 +85,15 @@ public class Puzzle {
    */
   public void randomizeState(int n){
 
+      Random r = new Random();
+      r.setSeed(24);
+
       for(int i = 0; i < n; i++) {
-          currentNode = currentNode.move(ThreadLocalRandom.current().nextInt(0, 4));
+          currentNode = currentNode.move(r.nextInt(4));
       }
 
       currentNode.setParent(null);
+      currentNode.setD(0);
   }
 
   /*
@@ -125,7 +127,9 @@ public class Puzzle {
           currentNode = f.poll();
           if (Arrays.deepEquals(currentNode.getBoard(), goalState)) {
               printTrace(currentNode);
-              System.out.println(i);
+              System.out.println("A* H" + h + ":");
+              System.out.println("nodes explored: " + i);
+              System.out.println("solution depth: " + currentNode.getD());
               return currentNode;
           }
 
@@ -159,7 +163,9 @@ public class Puzzle {
           currentNode = f.poll();
           if (Arrays.deepEquals(currentNode.getBoard(), goalState)) {
               printTrace(currentNode);
-              System.out.println(i);
+              System.out.println("local beam search:");
+              System.out.println("nodes explored: " + i);
+              System.out.println("solution depth: " + currentNode.getD());
               return currentNode;
           }
 
@@ -210,6 +216,8 @@ public class Puzzle {
    */
   public void printTrace(Node n) {
 
+      System.out.println("+++++++++++++++++");
+
       Node track = n;
       Stack<Node> path = new Stack<>();
 
@@ -225,5 +233,7 @@ public class Puzzle {
 
           path.pop().printState();
       }
+
+      System.out.println("+++++++++++++++++");
   }
 }

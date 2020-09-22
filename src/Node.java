@@ -172,7 +172,7 @@ public class Node {
      */
     public void printState() {
 
-        System.out.println("------");
+        System.out.println("-------------");
         char[][] c = board.clone();
         c[indexes[0].x][indexes[0].y] = 'b';
 
@@ -180,7 +180,7 @@ public class Node {
 
             System.out.println(Arrays.toString(board[i]).replace(',', ' '));
         }
-        System.out.println("------");
+        System.out.println("-------------");
     }
 
 }

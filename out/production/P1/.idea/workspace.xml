@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="58e138f3-1a66-48dd-a820-300a9e4eb4df" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/out/production/P1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/P1/BoardState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/P1/IOManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P1/IOManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/P1/Puzzle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P1/Puzzle.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/P1/PuzzleTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/P1/PuzzleTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Puzzle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PuzzleTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PuzzleTests.java" afterDir="false" />
     </list>
@@ -88,6 +87,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PuzzleTests.testBeam" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="P1" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="11.0.4" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PuzzleTests" />
+      <option name="METHOD_NAME" value="testBeam" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PuzzleTests.testF" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="P1" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -114,26 +126,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PuzzleTests.testMain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PuzzleTests.testRand" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="P1" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="11.0.4" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="PuzzleTests" />
-      <option name="METHOD_NAME" value="testMain" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="PARAMETERS" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PuzzleTests.testRandom" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="P1" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="11.0.4" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="PuzzleTests" />
-      <option name="METHOD_NAME" value="testRandom" />
+      <option name="METHOD_NAME" value="testRand" />
       <option name="TEST_OBJECT" value="method" />
       <option name="PARAMETERS" value="" />
       <method v="2">
@@ -154,10 +153,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.PuzzleTests.testF" />
+        <item itemvalue="JUnit.PuzzleTests.testRand" />
         <item itemvalue="JUnit.PuzzleTests" />
+        <item itemvalue="JUnit.PuzzleTests.testBeam" />
         <item itemvalue="JUnit.PuzzleTests.testH" />
-        <item itemvalue="JUnit.PuzzleTests.testMain" />
-        <item itemvalue="JUnit.PuzzleTests.testRandom" />
       </list>
     </recent_temporary>
   </component>
@@ -220,7 +219,28 @@
       <option name="project" value="LOCAL" />
       <updated>1600638497306</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Deleted unused class">
+      <created>1600666717749</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1600666717749</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Deleted unused class">
+      <created>1600746113186</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1600746113186</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fixed A* and beam">
+      <created>1600746160750</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1600746160750</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -239,6 +259,7 @@
     <MESSAGE value="various cleanups" />
     <MESSAGE value="Commented" />
     <MESSAGE value="Deleted unused class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deleted unused class" />
+    <MESSAGE value="fixed A* and beam" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed A* and beam" />
   </component>
 </project>
