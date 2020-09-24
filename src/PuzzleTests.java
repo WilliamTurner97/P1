@@ -3,6 +3,8 @@ import java.util.Random;
 
 public class PuzzleTests extends TestCase {
 
+  Random r = new Random();
+
   public void testMain() {
 
       String[] s = new String[] {"text file/text1.txt"};
@@ -33,7 +35,7 @@ public class PuzzleTests extends TestCase {
     assertEquals("n2h2", n2.getH2(), 20);
   }
 
-  public void testF() {
+  public void testA() {
 
       Node n1 = new Node(new char[][]{{'0','1','2'},{'3','4','5'},{'6','7','8'}});
       Puzzle p = new Puzzle(n1);
@@ -63,5 +65,66 @@ public class PuzzleTests extends TestCase {
 
       r.setSeed(24);
       System.out.println(r.nextInt());
+  }
+
+  public void testExperiment1() {
+
+      Node n1 = new Node(new char[][]{{'0','1','2'},{'3','4','5'},{'6','7','8'}});
+      Puzzle p = new Puzzle(n1);
+
+      for(int i = 0; i < 5; i++) {
+
+          int n = r.nextInt(300);
+
+          p.randomizeState(n);
+          p.printState();
+          p.solveA(1);
+
+          p.randomizeState(n);
+          p.printState();
+          p.solveA(2);
+
+          p.randomizeState(n);
+          p.printState();
+          p.solveBeam(2);
+
+          p.randomizeState(n);
+          p.printState();
+          p.solveBeam(5);
+      }
+  }
+
+  public void testExperiment2() {
+
+      Node n1 = new Node(new char[][]{{'0','1','2'},{'3','4','5'},{'6','7','8'}});
+      Puzzle p = new Puzzle(n1);
+
+      for(int i = 2; i < 6; i++) {
+
+          System.out.println("+++++++++++++++++");
+          System.out.println("maxNodes : " + Math.pow(10, i) );
+
+          p.setMaxNodes( (int)Math.pow(10, i));
+
+          for(int j = 0; j < 25; j++) {
+
+              int n = r.nextInt(300);
+
+              p.randomizeState(n);;
+              p.solveA(1);
+
+              p.randomizeState(n);
+              p.solveA(2);
+
+              p.randomizeState(n);
+              p.solveBeam(2);
+
+              p.randomizeState(n);
+              p.solveBeam(5);
+
+          }
+
+          System.out.println("+++++++++++++++++");
+      }
   }
 }

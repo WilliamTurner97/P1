@@ -144,6 +144,7 @@ public class Puzzle {
               }
           }
       }
+      System.out.println("error: maxNodes exceeded");
       return this.currentNode;
   }
 
@@ -183,6 +184,7 @@ public class Puzzle {
               }
           }
       }
+      System.out.println("error: maxNodes exceeded");
       return currentNode;
   }
 

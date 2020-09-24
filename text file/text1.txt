@@ -1,6 +1,7 @@
 setState b12 345 678
 printState
 randomizeState 45
+printState
 solve A-Star 1
 randomizeState 45
 solve A-Star 2
